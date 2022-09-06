@@ -1,9 +1,9 @@
 package me.thesnipe12;
 
-import me.thesnipe12.Listeners.Combat;
-import me.thesnipe12.Listeners.CommandSend;
-import me.thesnipe12.Listeners.Log;
-import me.thesnipe12.Listeners.WorldGuardListener;
+import me.thesnipe12.listeners.Combat;
+import me.thesnipe12.listeners.CommandSend;
+import me.thesnipe12.listeners.Log;
+import me.thesnipe12.listeners.WorldGuardListener;
 import me.thesnipe12.commands.Sclnewbie;
 import me.thesnipe12.commands.Sclreload;
 import me.thesnipe12.commands.TabCompletion;
@@ -23,7 +23,7 @@ public class SimpleCL extends JavaPlugin {
 
         classesSetup();
 
-        WorldGuardSetup();
+        worldGuardSetup();
 
         commandsSetup();
 
@@ -50,7 +50,7 @@ public class SimpleCL extends JavaPlugin {
         }
     }
 
-    private void WorldGuardSetup() {
+    private void worldGuardSetup() {
         if (!getConfig().getBoolean("borderHopping")) {
             if (Bukkit.getPluginManager().getPlugin("WGRegionEvents") != null) {
                 getLogger().info(Constants.BORDER_DISABLED_SUCCESS);

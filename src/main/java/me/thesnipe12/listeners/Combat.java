@@ -1,7 +1,6 @@
-package me.thesnipe12.Listeners;
+package me.thesnipe12.listeners;
 
 import me.thesnipe12.NewbieConfig;
-import me.thesnipe12.SimpleCL;
 import org.bukkit.entity.EnderCrystal;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -11,6 +10,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.projectiles.ProjectileSource;
 
 import java.util.HashMap;
@@ -18,8 +18,8 @@ import java.util.HashMap;
 import static me.thesnipe12.Utils.getConfigMessage;
 
 public class Combat implements Listener {
-    SimpleCL plugin;
-    public Combat(SimpleCL plugin) {
+    private final Plugin plugin;
+    public Combat(Plugin plugin) {
         this.plugin = plugin;
     }
     public static HashMap<String, Integer> combatTimer = new HashMap<>();

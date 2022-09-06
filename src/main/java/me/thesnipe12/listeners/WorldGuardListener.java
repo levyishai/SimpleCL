@@ -1,18 +1,18 @@
-package me.thesnipe12.Listeners;
+package me.thesnipe12.listeners;
 
 import de.netzkronehd.wgregionevents.events.RegionEnterEvent;
-import me.thesnipe12.SimpleCL;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.plugin.Plugin;
 
-import static me.thesnipe12.Listeners.Combat.combatTimer;
 import static me.thesnipe12.Utils.getConfigMessage;
+import static me.thesnipe12.listeners.Combat.combatTimer;
 
 public class WorldGuardListener implements Listener {
-    SimpleCL plugin;
+    private final Plugin plugin;
 
-    public WorldGuardListener(SimpleCL plugin) {
+    public WorldGuardListener(Plugin plugin) {
         this.plugin = plugin;
     }
 

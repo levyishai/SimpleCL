@@ -1,20 +1,20 @@
 package me.thesnipe12.commands;
 
 import me.thesnipe12.Constants;
-import me.thesnipe12.Listeners.WorldGuardListener;
 import me.thesnipe12.NewbieConfig;
-import me.thesnipe12.SimpleCL;
+import me.thesnipe12.listeners.WorldGuardListener;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.plugin.Plugin;
 
 public class Sclreload implements CommandExecutor {
 
-    SimpleCL plugin;
+    Plugin plugin;
 
-    public Sclreload(SimpleCL plugin) {
+    public Sclreload(Plugin plugin) {
         this.plugin = plugin;
     }
     @Override

@@ -1,10 +1,11 @@
 package me.thesnipe12;
 
 import org.bukkit.ChatColor;
+import org.bukkit.plugin.Plugin;
 
 public class Utils {
-    public static String getConfigMessage(String path, SimpleCL plugin) {
-        if("".equals(plugin.getConfig().getString(path))) return "";
+    public static String getConfigMessage(String path, Plugin plugin) {
+        if(plugin.getConfig().getString(path, "").isEmpty()) return "";
         return ChatColor.translateAlternateColorCodes('&',
                 plugin.getConfig().getString("prefix") + plugin.getConfig().getString(path));
     }

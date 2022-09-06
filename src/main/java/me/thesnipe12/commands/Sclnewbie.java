@@ -1,7 +1,6 @@
 package me.thesnipe12.commands;
 
 import me.thesnipe12.NewbieConfig;
-import me.thesnipe12.SimpleCL;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
@@ -9,15 +8,16 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 
 import java.util.UUID;
 
 import static me.thesnipe12.Utils.isNumeric;
 
 public class Sclnewbie implements CommandExecutor {
-    SimpleCL plugin;
+    Plugin plugin;
 
-    public Sclnewbie(SimpleCL plugin) {
+    public Sclnewbie(Plugin plugin) {
         this.plugin = plugin;
     }
     @Override

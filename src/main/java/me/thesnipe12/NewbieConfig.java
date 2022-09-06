@@ -9,7 +9,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class NewbieConfig {
-    static SimpleCL plugin;
+    private static SimpleCL plugin;
     public NewbieConfig(SimpleCL plugin) {
         NewbieConfig.plugin = plugin;
     }

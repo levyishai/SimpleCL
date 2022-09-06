@@ -1,8 +1,7 @@
-package me.thesnipe12.Listeners;
+package me.thesnipe12.listeners;
 
 import me.thesnipe12.Constants;
 import me.thesnipe12.NewbieConfig;
-import me.thesnipe12.SimpleCL;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -15,17 +14,18 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static me.thesnipe12.Listeners.Combat.combatTimer;
 import static me.thesnipe12.SimpleCL.isUpToDate;
 import static me.thesnipe12.Utils.getConfigMessage;
+import static me.thesnipe12.listeners.Combat.combatTimer;
 
 public class Log implements Listener {
-    SimpleCL plugin;
-    public Log(SimpleCL plugin) {
+    private final Plugin plugin;
+    public Log(Plugin plugin) {
         this.plugin = plugin;
     }
     private final List<Player> kicked = new ArrayList<>();
