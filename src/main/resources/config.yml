@@ -1,0 +1,110 @@
+# Configuration for messages.
+Messages:
+
+  # What message should be sent to the tagger.
+  # Here putting %player% will give you the person that was tagged.
+  # Put '' if you want to not send a message.
+  # Default: '&cYou have tagged %player%! DO NOT LOG OUT!'
+  TaggerMessage: '&cYou have tagged %player%! DO NOT LOG OUT!'
+
+  # What message should be sent to the tagged player.
+  # Here putting %player% will give you the tagger.
+  # Put '' if you want to not send a message.
+  # Default: '&c%player% has combat tagged you! DO NOT LOG OUT!'
+  TaggedMessage: '&c%player% has combat tagged you! DO NOT LOG OUT!'
+
+  # What message should be sent to a player when he left combat.
+  # Here putting %player% will give you the person that left combat.
+  # Put '' if you want to not send a message.
+  # Default: '&aYou are now out of combat!'
+  LeftCombatMessage: '&aYou are now out of combat!'
+
+  # What message should be broadcasted if a player combat logged.
+  # Here putting &player% will give you the combat logger.
+  # Put '' if you want to not send a message.
+  # Default: '&4%player% has combat logged and got punished!'
+  CombatLoggedMessage: '&4%player% has combat logged and got punished!'
+
+  # What message should be sent to a player if he used a non-allowed command.
+  # Put as '' for no message.
+  # Default: '&4You are not allowed to use this command while in combat!'
+  NonAllowed: '&4You are not allowed to use this command while in combat!'
+
+  # What message should be sent to a damager if he damaged a player in newbie protection.
+  # Here putting %player% will give you the tagged player.
+  # Put '' if you want to not send a message.
+  # Default: '&4%player% has newbie protection!'
+  hasNewbie: '&4%player% has newbie protection!'
+
+  # What message should be sent to a damager if he damaged a player while in newbie protection.
+  # Here putting %player% will give you the tagged player.
+  # Put '' if you want to not send a message.
+  # Default: '&4You are not allowed to damage players while in newbie protection!'
+  whileNewbie: '&4You are not allowed to damage players while in newbie protection!'
+
+  # What message should be sent to a player that entered a region while in combat (for borderHopping: false).
+  # Put '' if you want to not send a message.
+  # Default: '&4You are not allowed to enter this region while in combat!'
+  borderHop: '&4You are not allowed to enter this region while in combat!'
+
+# Configuration for the timer.
+Timer:
+
+  # How many seconds since combat you won't be able to combat log.
+  # Default: 30
+  CombatTime: 30
+
+  # Should End Crystal tag players.
+  # Default: true
+  CrystalTag: true
+
+  # What color should the number in the combat timer be.
+  # Default: '&c'
+  NumberColor: '&c'
+
+  # What message should be shown in the action bar of the timer.
+  # Default: '&f Combat timer --> '
+  ActionBarMessage: '&f Combat timer --> '
+
+  # What commands should be banned from a player to do while in combat.
+  # Put as 'none' to disable.
+  # Default: 'none'
+  # Please don't put / before the command for example: write 'fly' instead of '/fly'.
+  BannedCommands:
+    - 'none'
+
+# Configuration for LifeSteal.
+LifeSteal:
+
+  # Should the tagger get a heart.
+  # Default: false
+  GiveHeart: false
+
+  # Should the player who died get a heart.
+  # Default: false
+  RemoveHeart: false
+
+# Configuration for the newbie protection.
+newbieProtection:
+  # Should the newbie protection be enabled.
+  # Default: false
+  use: false
+
+  # How many seconds should a player have newbie protection.
+  # Default: 3600
+  seconds: 3600
+
+  # Should Newbies be protected from End Crystals.
+  # Default: true
+  crystalsDamage: true
+
+# Border hopping is when someone enters another region while in combat (for worldguard).
+# Requires WGRegionEvents(https://www.spigotmc.org/resources/worldguard-region-events-updated.61490/).
+# Should the border hopping be allowed.
+# Default: true
+borderHopping: true
+
+# What prefix should before every message.
+# Put as '' for no prefix.
+# Default: '&a&lSimpleCL&8&l>>&r '
+prefix: '&a&lSimpleCL&8&l>>&r '
