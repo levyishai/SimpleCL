@@ -1,9 +1,9 @@
 name: SimpleCL
-version: 1.7.2
+version: 1.7.3
 main: me.thesnipe12.Main
 api-version: 1.18
 author: TheSnipe12
-description: A fan made recreation of the combat log plugin used in LifeSteal season 2.
+description: A fan made recreation of the combat log plugin used in LifeSteal season 2, with many more features!
 permissions:
   simplecl.newbie:
     description: Allow the player to use admin newbie commands.
