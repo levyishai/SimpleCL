@@ -13,8 +13,8 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.projectiles.ProjectileSource;
 
-import java.util.HashMap;
-
+import static me.thesnipe12.Constants.combatTimer;
+import static me.thesnipe12.Constants.lastHitter;
 import static me.thesnipe12.Utils.getConfigMessage;
 
 public class Combat implements Listener {
@@ -22,8 +22,6 @@ public class Combat implements Listener {
     public Combat(Plugin plugin) {
         this.plugin = plugin;
     }
-    public static HashMap<String, Integer> combatTimer = new HashMap<>();
-    public static HashMap<Player, Player> lastHitter = new HashMap<>();
     @EventHandler(ignoreCancelled = true)
     public void on2(EntityDamageByEntityEvent event){
         Entity damager = event.getDamager();

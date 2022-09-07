@@ -7,7 +7,7 @@ public class Utils {
     public static String getConfigMessage(String path, Plugin plugin) {
         if(plugin.getConfig().getString(path, "").isEmpty()) return "";
         return ChatColor.translateAlternateColorCodes('&',
-                plugin.getConfig().getString("prefix") + plugin.getConfig().getString(path));
+                plugin.getConfig().getString("prefix", "") + plugin.getConfig().getString(path));
     }
     public static boolean isNumeric(String str) {
         try {

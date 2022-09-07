@@ -15,7 +15,7 @@ import java.util.UUID;
 import static me.thesnipe12.Utils.isNumeric;
 
 public class Sclnewbie implements CommandExecutor {
-    Plugin plugin;
+    private final Plugin plugin;
 
     public Sclnewbie(Plugin plugin) {
         this.plugin = plugin;

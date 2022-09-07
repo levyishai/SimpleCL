@@ -12,7 +12,7 @@ import org.bukkit.plugin.Plugin;
 
 public class Sclreload implements CommandExecutor {
 
-    Plugin plugin;
+    private final Plugin plugin;
 
     public Sclreload(Plugin plugin) {
         this.plugin = plugin;

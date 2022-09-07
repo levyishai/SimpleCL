@@ -6,8 +6,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.plugin.Plugin;
 
+import static me.thesnipe12.Constants.combatTimer;
 import static me.thesnipe12.Utils.getConfigMessage;
-import static me.thesnipe12.listeners.Combat.combatTimer;
 
 public class CommandSend implements Listener {
     private final Plugin plugin;

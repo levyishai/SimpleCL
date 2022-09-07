@@ -19,9 +19,10 @@ import org.bukkit.plugin.Plugin;
 import java.util.ArrayList;
 import java.util.List;
 
+import static me.thesnipe12.Constants.combatTimer;
+import static me.thesnipe12.Constants.lastHitter;
 import static me.thesnipe12.SimpleCL.isUpToDate;
 import static me.thesnipe12.Utils.getConfigMessage;
-import static me.thesnipe12.listeners.Combat.combatTimer;
 
 public class Log implements Listener {
     private final Plugin plugin;
@@ -43,8 +44,8 @@ public class Log implements Listener {
                         getConfigMessage("Messages.CombatLoggedMessage", plugin).replace("%player%", player.getName())));
             }
             combatTimer.put(player.getName(), 0);
-            if(!Combat.lastHitter.containsKey(player)) return;
-            AttributeInstance health = Combat.lastHitter.get(player).getAttribute(Attribute.GENERIC_MAX_HEALTH);
+            if(!lastHitter.containsKey(player)) return;
+            AttributeInstance health = lastHitter.get(player).getAttribute(Attribute.GENERIC_MAX_HEALTH);
             if (plugin.getConfig().getBoolean("LifeSteal.GiveHeart") && health != null) {
                 health.setBaseValue(health.getValue() + 2);
             }

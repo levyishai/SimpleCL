@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import static me.thesnipe12.listeners.Combat.combatTimer;
+import static me.thesnipe12.Constants.combatTimer;
 import static me.thesnipe12.Utils.getConfigMessage;
 import static org.bukkit.Bukkit.getPlayer;
 
