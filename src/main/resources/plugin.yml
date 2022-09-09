@@ -1,6 +1,6 @@
 name: SimpleCL
 version: 1.7.3
-main: me.thesnipe12.Main
+main: me.thesnipe12.SimpleCL
 api-version: 1.18
 author: TheSnipe12
 description: A fan made recreation of the combat log plugin used in LifeSteal season 2, with many more features!
