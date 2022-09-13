@@ -31,7 +31,9 @@ public class Log implements Listener {
     }
     private final List<Player> kicked = new ArrayList<>();
     @EventHandler
-    public void on(PlayerKickEvent event){kicked.add(event.getPlayer());}
+    public void on(PlayerKickEvent event){
+        if(plugin.getConfig().getBoolean("Timer.killOnKick")) kicked.add(event.getPlayer());
+    }
     @EventHandler(priority = EventPriority.LOW)
     public void on(PlayerQuitEvent event) {
         if(kicked.contains(event.getPlayer())) return;

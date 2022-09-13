@@ -58,6 +58,10 @@ Timer:
   # Default: true
   CrystalTag: true
 
+  # Should players be killed on kicks.
+  # Default: false
+  killOnKicks: false
+
   # What color should the number in the combat timer be.
   # Default: '&c'
   NumberColor: '&c'

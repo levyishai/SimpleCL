@@ -62,12 +62,12 @@ public class Combat implements Listener {
         }
         if (combatTimer.get(damager.getName()) == 0) {
             if(!getConfigMessage("Messages.TaggerMessage", plugin).equals("")){
-                damager.sendMessage(getConfigMessage("Messages.TaggerMessage", plugin).replace("%player", damaged.getName()));
+                damager.sendMessage(getConfigMessage("Messages.TaggerMessage", plugin).replace("%player%", damaged.getName()));
             }
         }
         if (combatTimer.get(damaged.getName()) == 0) {
             if(!getConfigMessage("Messages.TaggedMessage", plugin).equals("")){
-                damager.sendMessage(getConfigMessage("Messages.TaggerMessage", plugin).replace("%player", damager.getName()));
+                damager.sendMessage(getConfigMessage("Messages.TaggerMessage", plugin).replace("%player%", damager.getName()));
             }
         }
         combatTimer.put(damager.getName(), plugin.getConfig().getInt("Timer.CombatTime"));
