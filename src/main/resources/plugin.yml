@@ -1,18 +1,22 @@
 name: SimpleCL
-version: 1.7.5
+version: 2.0.0
 main: me.thesnipe12.SimpleCL
 api-version: 1.18
 author: TheSnipe12
 description: A fan made recreation of the combat log plugin used in LifeSteal season 2, with many more features!
+softdepend: [WorldGuardEvents]
+
 permissions:
   simplecl.newbie:
     description: Allow the player to use admin newbie commands.
   simplecl.reload:
     description: Allow the player to reload the config.
+
 commands:
   sclreload:
     usage: /sclreload
     description: Reloads the plugin.
+    permission: simplecl.reload
   sclnewbie:
     usage: /sclnewbie <get/remove/set/toggle> [player] [number]
     description: A command to control newbie protection.

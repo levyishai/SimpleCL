@@ -106,7 +106,7 @@ newbieProtection:
 # Requires WGRegionEvents(https://www.spigotmc.org/resources/worldguard-region-events-updated.61490/).
 # Should the border hopping be allowed.
 # Default: true
-borderHopping: true
+allowBorderHopping: true
 
 # What prefix should before every message.
 # Put as '' for no prefix.

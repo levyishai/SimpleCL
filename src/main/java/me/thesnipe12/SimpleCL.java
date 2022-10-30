@@ -1,95 +1,83 @@
 package me.thesnipe12;
 
-import me.thesnipe12.listeners.Combat;
-import me.thesnipe12.listeners.CommandSend;
-import me.thesnipe12.listeners.Log;
+import me.thesnipe12.commands.SclnewbieCommand;
+import me.thesnipe12.commands.SclreloadCommand;
+import me.thesnipe12.listeners.CombatListener;
+import me.thesnipe12.listeners.CommandSendListener;
+import me.thesnipe12.listeners.LoggingListener;
 import me.thesnipe12.listeners.WorldGuardListener;
-import me.thesnipe12.commands.Sclnewbie;
-import me.thesnipe12.commands.Sclreload;
-import me.thesnipe12.commands.TabCompletion;
 import org.bukkit.Bukkit;
-import org.bukkit.command.PluginCommand;
+import org.bukkit.command.TabExecutor;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.HashMap;
 import java.util.List;
 
-public class SimpleCL extends JavaPlugin {
-    public static boolean isUpToDate;
+import static me.thesnipe12.Utilities.getCustomConfig;
+
+public final class SimpleCL extends JavaPlugin {
+    private static final HashMap<Player, Integer> combatTimer = new HashMap<>();
+    private static final HashMap<Player, Player> lastHitter = new HashMap<>();
 
     @Override
     public void onEnable() {
         configsSetup();
-
         classesSetup();
-
         worldGuardSetup();
-
         commandsSetup();
-
         checkForUpdate();
     }
 
-    private void checkForUpdate() {
-        new UpdateChecker(this, 101603).getVersion(version -> {
-            if (!version.equalsIgnoreCase(getDescription().getVersion())) {
-                getLogger().warning("There is a new version of the plugin available! Go to " +
-                        "\"https://www.spigotmc.org/resources/simplecl.101603/\" to download it.");
-                isUpToDate = false;
-            } else {
-                getLogger().info("You are running the latest version of the plugin!");
-                isUpToDate = true;
-            }
-        });
-    }
-
-    private void commandsSetup() {
-        final List<String> commands = List.of("sclreload", "sclnewbie");
-        for(String command : commands){
-            setCommandExecutor(getCommand(command));
-        }
-    }
-
-    private void worldGuardSetup() {
-        if (!getConfig().getBoolean("borderHopping")) {
-            if (Bukkit.getPluginManager().getPlugin("WGRegionEvents") != null) {
-                getLogger().info(Constants.BORDER_DISABLED_SUCCESS);
-                Bukkit.getPluginManager().registerEvents(new WorldGuardListener(this), this);
-            } else {
-                getLogger().warning(Constants.BORDER_DISABLED_FAIL);
-            }
-        }
-    }
-
     private void configsSetup() {
-        NewbieConfig.setup();
-        NewbieConfig.getNewbieConfig().addDefault("players", null);
-        NewbieConfig.getNewbieConfig().options().copyDefaults(true);
-        NewbieConfig.saveNewbieConfig();
+        CustomConfig newbieConfig = getCustomConfig(Utilities.ConfigType.NEWBIE_CONFIG);
+        newbieConfig.setup();
+        newbieConfig.getConfig().options().copyDefaults(true);
+        newbieConfig.saveConfig();
 
         getConfig().options().copyDefaults(true);
         saveDefaultConfig();
     }
 
     private void classesSetup() {
-        new Timer(this).runTaskTimer(this, 0L, 20L);
+        new Timer(this, combatTimer).runTaskTimer(this, 0L, 20L);
 
-        new Sclnewbie(this);
-        new Sclreload(this);
-        new TabCompletion();
+        final List<Listener> listeners = List.of(new CommandSendListener(this, combatTimer),
+                new CombatListener(this, combatTimer, lastHitter), new LoggingListener(this, combatTimer, lastHitter));
 
-        List<Listener> listeners = List.of(new CommandSend(this), new Combat(this), new Log(this));
         for (Listener l : listeners) {
             Bukkit.getPluginManager().registerEvents(l, this);
         }
     }
-    private void setCommandExecutor(PluginCommand cmd) {
-        if(cmd != null){
-            switch (cmd.getName()) {
-                case "sclreload" -> cmd.setExecutor(new Sclreload(this));
-                case "sclnewbie" -> cmd.setExecutor(new Sclnewbie(this));
+
+    private void worldGuardSetup() {
+        if (!getConfig().getBoolean("allowBorderHopping")) {
+            if (Bukkit.getPluginManager().getPlugin("WorldGuardEvents") != null) {
+                getLogger().info(PluginConstants.BORDER_DISABLE_SUCCESS);
+                Bukkit.getPluginManager().registerEvents(new WorldGuardListener(this, combatTimer), this);
+            } else {
+                getLogger().warning(PluginConstants.BORDER_DISABLE_FAIL);
             }
-            cmd.setTabCompleter(new TabCompletion());
         }
     }
+
+    private void commandsSetup() {
+        final List<TabExecutor> commandClasses = List.of(new SclnewbieCommand(this), new SclreloadCommand(this, combatTimer));
+        for (int i = commandClasses.size(); i > 0; i--) {
+            PluginConstants.COMMANDS.get(i - 1).setExecutor(commandClasses.get(i - 1));
+        }
+    }
+
+    private void checkForUpdate() {
+        new UpdateChecker(this, PluginConstants.RESOURCE_ID).getVersion(version -> {
+            if (!version.equalsIgnoreCase(getDescription().getVersion())) {
+                getLogger().warning("There is a new version of the plugin available! Go to " +
+                        "\"https://www.spigotmc.org/resources/simplecl.101603/\" to download it.");
+            } else {
+                getLogger().info("You are running the latest version of the plugin!");
+            }
+        });
+    }
+
 }
