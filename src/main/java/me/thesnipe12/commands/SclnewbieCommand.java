@@ -32,10 +32,10 @@ public class SclnewbieCommand implements TabExecutor {
         }
 
         switch (args[0].toLowerCase()) {
-            case "set" -> optionSet(sender, args);
-            case "toggle" -> optionToggle(sender);
-            case "remove" -> optionRemove(sender, args);
-            case "get" -> optionGet(sender, args);
+            case "set" -> set(sender, args);
+            case "toggle" -> toggle(sender);
+            case "remove" -> remove(sender, args);
+            case "get" -> get(sender, args);
             default -> sender.sendMessage(CommandsConstants.NEWBIE_WRONG_USAGE);
         }
 
@@ -73,7 +73,7 @@ public class SclnewbieCommand implements TabExecutor {
         }
     }
 
-    private void optionGet(CommandSender sender, String[] args) {
+    private void get(CommandSender sender, String[] args) {
         if (!plugin.getConfig().getBoolean("newbieProtection.use")) {
             sender.sendMessage(CommandsConstants.NEWBIE_DISABLED);
             return;
@@ -104,7 +104,7 @@ public class SclnewbieCommand implements TabExecutor {
 
     }
 
-    private void optionRemove(CommandSender sender, String[] args) {
+    private void remove(CommandSender sender, String[] args) {
         if (!plugin.getConfig().getBoolean("newbieProtection.use")) {
             sender.sendMessage(CommandsConstants.NEWBIE_DISABLED);
             return;
@@ -136,7 +136,7 @@ public class SclnewbieCommand implements TabExecutor {
         }
     }
 
-    private void optionToggle(CommandSender sender) {
+    private void toggle(CommandSender sender) {
         if(!sender.hasPermission(CommandsConstants.NEWBIE_PERM)) {
             sender.sendMessage(CommandsConstants.NO_PERMISSION);
             return;
@@ -156,7 +156,7 @@ public class SclnewbieCommand implements TabExecutor {
         sender.sendMessage(CommandsConstants.NEWBIE_NEW_STATE.replace("%state%", state));
     }
 
-    private void optionSet(CommandSender sender, String[] args) {
+    private void set(CommandSender sender, String[] args) {
         if (!sender.hasPermission(CommandsConstants.NEWBIE_PERM)) {
             sender.sendMessage(CommandsConstants.NO_PERMISSION);
             return;
