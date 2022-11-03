@@ -111,6 +111,7 @@ public class CombatListener implements Listener {
             ProjectileSource projectileSource = ((Projectile) entity).getShooter();
             return (Entity) projectileSource;
         }
+
         return null;
     }
 

@@ -32,6 +32,7 @@ public class CustomConfig {
      */
     public void setup() {
         Plugin pl = Bukkit.getPluginManager().getPlugin("SimpleCL");
+
         if(pl != null) {
             file = new File(pl.getDataFolder(), fileName);
         }
@@ -45,6 +46,7 @@ public class CustomConfig {
                 e.getStackTrace();
             }
         }
+
         config = YamlConfiguration.loadConfiguration(file);
     }
 

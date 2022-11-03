@@ -58,16 +58,16 @@ public class SclnewbieCommand implements TabExecutor {
             case 1:
                 if (sender.hasPermission(CommandsConstants.NEWBIE_PERM)) {
                     return CommandsConstants.NEWBIE_PERMS_OPTIONS;
-                }else{
-                    return CommandsConstants.NEWBIE_OPTIONS;
                 }
+
+                return CommandsConstants.NEWBIE_OPTIONS;
             case 2:
                 if(sender.hasPermission(CommandsConstants.NEWBIE_PERM) && CommandsConstants.NEWBIE_PERMS_OPTIONS.contains(args[0].toLowerCase())
                         && !args[0].equalsIgnoreCase("toggle")){
                     return Utilities.getOfflinePlayersAsStringList();
-                }else {
-                    return new ArrayList<>();
                 }
+
+                return new ArrayList<>();
             default:
                 return new ArrayList<>();
         }

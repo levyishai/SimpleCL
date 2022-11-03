@@ -43,6 +43,8 @@ public class SclreloadCommand implements TabExecutor {
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
+        if (!command.getName().equalsIgnoreCase("sclreload")) return null;
+
         return new ArrayList<>();
     }
 
@@ -66,6 +68,7 @@ public class SclreloadCommand implements TabExecutor {
 
         for (Utilities.ConfigType configType : Utilities.ConfigType.values()) {
             CustomConfig customConfig = Utilities.getCustomConfig(configType);
+
             customConfig.reloadConfig();
             customConfig.saveConfig();
         }

@@ -27,14 +27,17 @@ public final class SimpleCL extends JavaPlugin {
         classesSetup();
         worldGuardSetup();
         commandsSetup();
-        checkForUpdate();
+        checkForUpdates();
     }
 
     private void configsSetup() {
-        CustomConfig newbieConfig = getCustomConfig(Utilities.ConfigType.NEWBIE_CONFIG);
-        newbieConfig.setup();
-        newbieConfig.getConfig().options().copyDefaults(true);
-        newbieConfig.saveConfig();
+        for (Utilities.ConfigType configType : Utilities.ConfigType.values()) {
+            CustomConfig currentConfig = getCustomConfig(configType);
+
+            currentConfig.setup();
+            currentConfig.getConfig().options().copyDefaults(true);
+            currentConfig.saveConfig();
+        }
 
         getConfig().options().copyDefaults(true);
         saveDefaultConfig();
@@ -64,12 +67,13 @@ public final class SimpleCL extends JavaPlugin {
 
     private void commandsSetup() {
         final List<TabExecutor> commandClasses = List.of(new SclnewbieCommand(this), new SclreloadCommand(this, combatTimer));
+
         for (int i = commandClasses.size(); i > 0; i--) {
             PluginConstants.COMMANDS.get(i - 1).setExecutor(commandClasses.get(i - 1));
         }
     }
 
-    private void checkForUpdate() {
+    private void checkForUpdates() {
         new UpdateChecker(this, PluginConstants.RESOURCE_ID).getVersion(version -> {
             if (!version.equalsIgnoreCase(getDescription().getVersion())) {
                 getLogger().warning("There is a new version of the plugin available! Go to " +
