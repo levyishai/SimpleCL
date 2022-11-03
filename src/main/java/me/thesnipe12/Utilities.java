@@ -29,9 +29,7 @@ public class Utilities {
             replacement = "%player%";
         }
 
-        player.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                plugin.getConfig().getString("prefix", "") +
-                        plugin.getConfig().getString(path)).replace("%player%", replacement));
+        player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("prefix", "") + plugin.getConfig().getString(path)).replace("%player%", replacement));
     }
 
     /**
@@ -48,9 +46,7 @@ public class Utilities {
             replacement = "%player%";
         }
 
-        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&',
-                plugin.getConfig().getString("prefix", "") + plugin.getConfig()
-                        .getString(path)).replace("%player%", replacement));
+        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("prefix", "") + plugin.getConfig().getString(path)).replace("%player%", replacement));
     }
 
     /**
@@ -75,18 +71,7 @@ public class Utilities {
      * @param message the message to send.
      */
     public static void sendActionbar(Player player, String message) {
-        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.
-                translateAlternateColorCodes('&', message)));
-    }
-
-    /**
-     * Gets a custom config from a config type.
-     *
-     * @param configType the config type.
-     * @return the custom config.
-     */
-    public static CustomConfig getCustomConfig(ConfigType configType) {
-        return configType.customConfig;
+        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.translateAlternateColorCodes('&', message)));
     }
 
     /**
@@ -136,14 +121,10 @@ public class Utilities {
      */
     public static List<String> getCommandOptions(List<String> availableOptions, String[] args) {
         final String input = args[args.length - 1].toLowerCase();
-        List<String> completions = null;
+        List<String> completions = new ArrayList<>();
 
         for (String s : availableOptions) {
             if (s.toLowerCase().startsWith(input)) {
-                if (completions == null) {
-                    completions = new ArrayList<>();
-                }
-
                 completions.add(s);
             }
         }
@@ -168,6 +149,16 @@ public class Utilities {
         });
 
         return registered[0];
+    }
+
+    /**
+     * Gets a custom config from a config type.
+     *
+     * @param configType the config type.
+     * @return the custom config.
+     */
+    public static CustomConfig getCustomConfig(ConfigType configType) {
+        return configType.customConfig;
     }
 
     /**

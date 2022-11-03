@@ -33,13 +33,13 @@ public class CustomConfig {
     public void setup() {
         Plugin pl = Bukkit.getPluginManager().getPlugin("SimpleCL");
 
-        if(pl != null) {
+        if (pl != null) {
             file = new File(pl.getDataFolder(), fileName);
         }
 
-        if(!file.exists()) {
-            try{
-                if(!file.createNewFile()){
+        if (!file.exists()) {
+            try {
+                if (!file.createNewFile()) {
                     Bukkit.getLogger().warning("Failed to create " + fileName);
                 }
             } catch (IOException e) {

@@ -47,7 +47,7 @@ public class LoggingListener implements Listener {
         Player player = event.getPlayer();
         combatTimer.putIfAbsent(player, 0);
 
-        if (kicked.contains(event.getPlayer()) || combatTimer.get(player) == 0){
+        if (kicked.contains(event.getPlayer()) || combatTimer.get(player) == 0) {
             kicked.remove(event.getPlayer());
             return;
         }

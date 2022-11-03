@@ -26,7 +26,7 @@ public class SclreloadCommand implements TabExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if(!command.getName().equalsIgnoreCase("sclreload")) return false;
+        if (!command.getName().equalsIgnoreCase("sclreload")) return false;
 
         if (!sender.hasPermission(CommandsConstants.RELOAD_PERM)) {
             sender.sendMessage(CommandsConstants.NO_PERMISSION);
@@ -49,15 +49,15 @@ public class SclreloadCommand implements TabExecutor {
     }
 
     private void reloadWorldGuard(CommandSender sender) {
-        if(plugin.getConfig().getBoolean("allowBorderHopping")) return;
+        if (plugin.getConfig().getBoolean("allowBorderHopping")) return;
 
-        if(Bukkit.getPluginManager().getPlugin("WorldGuardEvents") == null) {
+        if (Bukkit.getPluginManager().getPlugin("WorldGuardEvents") == null) {
             sender.sendMessage(PluginConstants.BORDER_DISABLE_FAIL);
             return;
         }
 
         sender.sendMessage(PluginConstants.BORDER_DISABLE_SUCCESS);
-        if(!Utilities.isListenerRegistered(plugin, WorldGuardListener.class)) {
+        if (!Utilities.isListenerRegistered(plugin, WorldGuardListener.class)) {
             Bukkit.getPluginManager().registerEvents(new WorldGuardListener(plugin, combatTimer), plugin);
         }
     }

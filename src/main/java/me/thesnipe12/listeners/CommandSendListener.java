@@ -27,17 +27,17 @@ public class CommandSendListener implements Listener {
 
         String[] message = event.getMessage().split(" ");
 
-        if(!isBannedCommand(message[0])) return;
+        if (!isBannedCommand(message[0])) return;
 
         Utilities.sendConfigMessage("Messages.NonAllowed", plugin, player, null);
-        
+
         event.setCancelled(true);
     }
 
     private boolean isBannedCommand(String commandName) {
         for (String currentCommand : plugin.getConfig().getStringList("Timer.BannedCommands")) {
-            if(currentCommand.equalsIgnoreCase("none")) return false;
-            if (("/"+currentCommand).equalsIgnoreCase(commandName)) return true;
+            if (currentCommand.equalsIgnoreCase("none")) return false;
+            if (("/" + currentCommand).equalsIgnoreCase(commandName)) return true;
         }
         return false;
     }

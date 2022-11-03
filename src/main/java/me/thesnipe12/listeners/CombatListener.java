@@ -30,11 +30,11 @@ public class CombatListener implements Listener {
     }
 
     @EventHandler(ignoreCancelled = true)
-    public void onNewbie(EntityDamageByEntityEvent event){
-        if(!plugin.getConfig().getBoolean("newbieProtection.use")) return;
+    public void onNewbie(EntityDamageByEntityEvent event) {
+        if (!plugin.getConfig().getBoolean("newbieProtection.use")) return;
 
         Entity damager = event.getDamager();
-        if(projectileToEntity(damager) != null){
+        if (projectileToEntity(damager) != null) {
             damager = projectileToEntity(damager);
         }
         final Entity damaged = event.getEntity();
@@ -42,29 +42,29 @@ public class CombatListener implements Listener {
         if (!areUniquePlayers(damager, damaged, true)) return;
 
         final Entity newbie = getNewbie(damager, damaged);
-        if(newbie == null) return;
+        if (newbie == null) return;
 
         event.setCancelled(true);
 
         if (newbie == damager) {
             sendConfigMessage("Messages.whileNewbie", plugin, (Player) damager, damaged.getName());
-        } else if(damager instanceof Player) {
+        } else if (damager instanceof Player) {
             sendConfigMessage("Messages.hasNewbie", plugin, (Player) damager, damaged.getName());
         }
     }
 
-    @EventHandler(priority = EventPriority.MONITOR,ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void on(EntityDamageByEntityEvent event) {
         Entity damager = event.getDamager();
-        if(projectileToEntity(damager) != null){
+        if (projectileToEntity(damager) != null) {
             damager = projectileToEntity(damager);
         }
         final Entity damaged = event.getEntity();
 
-        if(!areUniquePlayers(damager, damaged, false)) return;
+        if (!areUniquePlayers(damager, damaged, false)) return;
 
         combatTimer.putIfAbsent((Player) damaged, 0);
-        if(damager instanceof Player){
+        if (damager instanceof Player) {
             combatTimer.putIfAbsent((Player) damager, 0);
             lastHitter.put(((Player) damaged), (Player) damager);
             lastHitter.put(((Player) damager), (Player) damaged);
@@ -89,25 +89,25 @@ public class CombatListener implements Listener {
 
         combatTimer.put(player, 0);
 
-        if(event.getEntity().getKiller() != null) return;
+        if (event.getEntity().getKiller() != null) return;
         combatTimer.put(event.getEntity().getKiller(), 0);
     }
 
-    private Entity getNewbie(Entity damager, Entity damaged){
+    private Entity getNewbie(Entity damager, Entity damaged) {
         int maxSeconds = plugin.getConfig().getInt("newbieProtection.seconds");
         int damagedSeconds = getCustomConfig(Utilities.ConfigType.NEWBIE_CONFIG).getConfig()
                 .getInt("players." + damaged.getUniqueId());
         int damagerSeconds = getCustomConfig(Utilities.ConfigType.NEWBIE_CONFIG).getConfig()
                 .getInt("players." + damager.getUniqueId());
 
-        if(damagerSeconds < maxSeconds) return damaged;
-        if(damagedSeconds < maxSeconds) return damager;
+        if (damagerSeconds < maxSeconds) return damaged;
+        if (damagedSeconds < maxSeconds) return damager;
 
         return null;
     }
 
-    private Entity projectileToEntity(Entity entity){
-        if (entity instanceof Projectile && ((Projectile) entity).getShooter() instanceof Entity){
+    private Entity projectileToEntity(Entity entity) {
+        if (entity instanceof Projectile && ((Projectile) entity).getShooter() instanceof Entity) {
             ProjectileSource projectileSource = ((Projectile) entity).getShooter();
             return (Entity) projectileSource;
         }
@@ -115,14 +115,14 @@ public class CombatListener implements Listener {
         return null;
     }
 
-    private boolean isEndCrystal(Entity entity, boolean forNewbie){
+    private boolean isEndCrystal(Entity entity, boolean forNewbie) {
         return (forNewbie ? !plugin.getConfig().getBoolean("newbieProtection.crystalsDamage") :
-                plugin.getConfig().getBoolean("Timer.CrystalTag"))  && (entity instanceof EnderCrystal);
+                plugin.getConfig().getBoolean("Timer.CrystalTag")) && (entity instanceof EnderCrystal);
     }
 
-    private boolean areUniquePlayers(Entity damager, Entity damaged, boolean forNewbie){
+    private boolean areUniquePlayers(Entity damager, Entity damaged, boolean forNewbie) {
         return ((damager instanceof Player || isEndCrystal(damager, forNewbie)) &&
                 damaged instanceof Player && damager != damaged);
     }
-    
+
 }

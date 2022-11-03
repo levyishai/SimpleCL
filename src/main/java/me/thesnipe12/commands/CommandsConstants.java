@@ -24,7 +24,7 @@ public class CommandsConstants {
             MAX_NEWBIE_TIME = ChatColor.GREEN + "Newbie time is %seconds% seconds!",
             NOT_NEWBIE = ChatColor.RED + "Already not a newbie!",
             NOW_NOT_NEWBIE = ChatColor.GREEN + "Now not a newbie!",
-            NEWBIE_NEW_STATE = ChatColor.GREEN + "Newbie protection is now: " + ChatColor.GOLD +"%state%!";
+            NEWBIE_NEW_STATE = ChatColor.GREEN + "Newbie protection is now: " + ChatColor.GOLD + "%state%!";
     protected static final String
             RELOADING_CONFIG = ChatColor.GREEN + "Reloading configs...",
             RELOAD_SUCCESSFUL = ChatColor.GREEN + "Reload successful!";
