@@ -13,7 +13,7 @@ public class Timer extends BukkitRunnable {
     private final Plugin plugin;
     private final HashMap<Player, Integer> combatTimer;
 
-    public Timer (Plugin plugin, HashMap<Player, Integer> combatTimer) {
+    public Timer(Plugin plugin, HashMap<Player, Integer> combatTimer) {
         this.plugin = plugin;
         this.combatTimer = combatTimer;
     }
@@ -21,7 +21,7 @@ public class Timer extends BukkitRunnable {
     @Override
     public void run() {
         for (Player player : combatTimer.keySet()) {
-            if(combatTimer.get(player) <= 0 || player == null) continue;
+            if (combatTimer.get(player) <= 0 || player == null) continue;
 
             Utilities.sendActionbar(player, plugin.getConfig().getString("Timer.ActionBarMessage")
                     + plugin.getConfig().getString("Timer.NumberColor") + combatTimer.get(player));
@@ -57,7 +57,7 @@ public class Timer extends BukkitRunnable {
     private void sendLastActionbarIfNeeded(Player player) {
         if (combatTimer.get(player) == 1) {
             Bukkit.getScheduler().runTaskLater(plugin, () -> {
-                if(combatTimer.get(player) > 0) return;
+                if (combatTimer.get(player) > 0) return;
 
                 Utilities.sendActionbar(player, plugin.getConfig().getString("Timer.ActionBarMessage")
                         + plugin.getConfig().getString("Timer.NumberColor") + combatTimer.get(player));

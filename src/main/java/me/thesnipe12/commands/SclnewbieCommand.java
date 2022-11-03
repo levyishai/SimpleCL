@@ -23,8 +23,8 @@ public class SclnewbieCommand implements TabExecutor {
     }
 
     @Override
-    public boolean onCommand(@NonNull CommandSender sender,@NonNull Command command,@NonNull String label,@NonNull String[] args) {
-        if(!command.getName().equalsIgnoreCase("sclnewbie")) return false;
+    public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, @NonNull String[] args) {
+        if (!command.getName().equalsIgnoreCase("sclnewbie")) return false;
 
         if (args.length == 0) {
             sender.sendMessage(CommandsConstants.NEWBIE_WRONG_USAGE);
@@ -44,8 +44,8 @@ public class SclnewbieCommand implements TabExecutor {
     }
 
     @Override
-    public List<String> onTabComplete(@NonNull CommandSender sender,@NonNull Command command,@NonNull String label,@NonNull String[] args) {
-        if(!command.getName().equalsIgnoreCase("sclnewbie")) return null;
+    public List<String> onTabComplete(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, @NonNull String[] args) {
+        if (!command.getName().equalsIgnoreCase("sclnewbie")) return null;
 
         final List<String> availableOptions = getAvailableOptions(sender, args);
         if (availableOptions.isEmpty()) return availableOptions;
@@ -54,7 +54,7 @@ public class SclnewbieCommand implements TabExecutor {
     }
 
     private List<String> getAvailableOptions(CommandSender sender, String[] args) {
-        switch(args.length) {
+        switch (args.length) {
             case 1:
                 if (sender.hasPermission(CommandsConstants.NEWBIE_PERM)) {
                     return CommandsConstants.NEWBIE_PERMS_OPTIONS;
@@ -62,8 +62,8 @@ public class SclnewbieCommand implements TabExecutor {
 
                 return CommandsConstants.NEWBIE_OPTIONS;
             case 2:
-                if(sender.hasPermission(CommandsConstants.NEWBIE_PERM) && CommandsConstants.NEWBIE_PERMS_OPTIONS.contains(args[0].toLowerCase())
-                        && !args[0].equalsIgnoreCase("toggle")){
+                if (sender.hasPermission(CommandsConstants.NEWBIE_PERM) && CommandsConstants.NEWBIE_PERMS_OPTIONS.contains(args[0].toLowerCase())
+                        && !args[0].equalsIgnoreCase("toggle")) {
                     return Utilities.getOfflinePlayersAsStringList();
                 }
 
@@ -86,14 +86,14 @@ public class SclnewbieCommand implements TabExecutor {
 
         if (args.length >= 2 && sender.hasPermission(CommandsConstants.NEWBIE_PERM) && getUUIDFromName(args[1]) != null) {
             uuid = getUUIDFromName(args[1]);
-        } else if(sender instanceof Player){
+        } else if (sender instanceof Player) {
             uuid = ((Player) sender).getUniqueId();
         } else {
             sender.sendMessage(CommandsConstants.ONLY_AVAILABLE_FOR_PLAYERS);
             return;
         }
 
-        seconds = newbieConfig.getConfig().getInt("players."+uuid);
+        seconds = newbieConfig.getConfig().getInt("players." + uuid);
 
         if (maxSeconds == seconds) {
             sender.sendMessage(CommandsConstants.NOT_NEWBIE_WITH_MAX_TIME.replace(
@@ -117,14 +117,14 @@ public class SclnewbieCommand implements TabExecutor {
 
         if (args.length >= 2 && sender.hasPermission(CommandsConstants.NEWBIE_PERM) && getUUIDFromName(args[1]) != null) {
             uuid = getUUIDFromName(args[1]);
-        } else if(sender instanceof Player){
+        } else if (sender instanceof Player) {
             uuid = ((Player) sender).getUniqueId();
         } else {
             sender.sendMessage(CommandsConstants.ONLY_AVAILABLE_FOR_PLAYERS);
             return;
         }
 
-        seconds = newbieConfig.getConfig().getInt("players."+uuid);
+        seconds = newbieConfig.getConfig().getInt("players." + uuid);
 
         if (maxSeconds == seconds) {
             sender.sendMessage(CommandsConstants.NOT_NEWBIE);
@@ -137,7 +137,7 @@ public class SclnewbieCommand implements TabExecutor {
     }
 
     private void toggle(CommandSender sender) {
-        if(!sender.hasPermission(CommandsConstants.NEWBIE_PERM)) {
+        if (!sender.hasPermission(CommandsConstants.NEWBIE_PERM)) {
             sender.sendMessage(CommandsConstants.NO_PERMISSION);
             return;
         }
