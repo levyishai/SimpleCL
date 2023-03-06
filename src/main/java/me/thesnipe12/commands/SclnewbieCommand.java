@@ -1,7 +1,7 @@
 package me.thesnipe12.commands;
 
-import me.thesnipe12.CustomConfig;
-import me.thesnipe12.Utilities;
+import me.thesnipe12.utilities.CustomConfig;
+import me.thesnipe12.utilities.PluginUtilities;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import static me.thesnipe12.Utilities.*;
+import static me.thesnipe12.utilities.PluginUtilities.*;
 
 public class SclnewbieCommand implements TabExecutor {
     private final Plugin plugin;
@@ -55,21 +55,22 @@ public class SclnewbieCommand implements TabExecutor {
 
     private List<String> getAvailableOptions(CommandSender sender, String[] args) {
         switch (args.length) {
-            case 1:
+            case 1 -> {
                 if (sender.hasPermission(CommandsConstants.NEWBIE_PERM)) {
                     return CommandsConstants.NEWBIE_PERMS_OPTIONS;
                 }
-
                 return CommandsConstants.NEWBIE_OPTIONS;
-            case 2:
+            }
+            case 2 -> {
                 if (sender.hasPermission(CommandsConstants.NEWBIE_PERM) && CommandsConstants.NEWBIE_PERMS_OPTIONS.contains(args[0].toLowerCase())
                         && !args[0].equalsIgnoreCase("toggle")) {
-                    return Utilities.getOfflinePlayersAsStringList();
+                    return PluginUtilities.getOfflinePlayersAsStringList();
                 }
-
                 return new ArrayList<>();
-            default:
+            }
+            default -> {
                 return new ArrayList<>();
+            }
         }
     }
 
@@ -82,7 +83,7 @@ public class SclnewbieCommand implements TabExecutor {
         final int seconds;
         final int maxSeconds = plugin.getConfig().getInt("newbieProtection.seconds");
         final UUID uuid;
-        CustomConfig newbieConfig = Utilities.getCustomConfig(Utilities.ConfigType.NEWBIE_CONFIG);
+        CustomConfig newbieConfig = PluginUtilities.getCustomConfig(PluginUtilities.ConfigType.NEWBIE_CONFIG);
 
         if (args.length >= 2 && sender.hasPermission(CommandsConstants.NEWBIE_PERM) && getUUIDFromName(args[1]) != null) {
             uuid = getUUIDFromName(args[1]);
@@ -113,7 +114,7 @@ public class SclnewbieCommand implements TabExecutor {
         final int seconds;
         final int maxSeconds = plugin.getConfig().getInt("newbieProtection.seconds");
         final UUID uuid;
-        CustomConfig newbieConfig = Utilities.getCustomConfig(Utilities.ConfigType.NEWBIE_CONFIG);
+        CustomConfig newbieConfig = PluginUtilities.getCustomConfig(PluginUtilities.ConfigType.NEWBIE_CONFIG);
 
         if (args.length >= 2 && sender.hasPermission(CommandsConstants.NEWBIE_PERM) && getUUIDFromName(args[1]) != null) {
             uuid = getUUIDFromName(args[1]);
@@ -177,8 +178,8 @@ public class SclnewbieCommand implements TabExecutor {
             return;
         }
 
-        CustomConfig newbieConfig = Utilities.getCustomConfig(Utilities.ConfigType.NEWBIE_CONFIG);
-        newbieConfig.getConfig().set("players." + Utilities.getUUIDFromName(args[1]), Integer.parseInt(args[2]));
+        CustomConfig newbieConfig = PluginUtilities.getCustomConfig(PluginUtilities.ConfigType.NEWBIE_CONFIG);
+        newbieConfig.getConfig().set("players." + PluginUtilities.getUUIDFromName(args[1]), Integer.parseInt(args[2]));
         newbieConfig.saveConfig();
 
         sender.sendMessage(CommandsConstants.COMMAND_SUCCESSFUL);

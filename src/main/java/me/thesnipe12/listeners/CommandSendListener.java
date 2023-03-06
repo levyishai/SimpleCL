@@ -1,6 +1,6 @@
 package me.thesnipe12.listeners;
 
-import me.thesnipe12.Utilities;
+import me.thesnipe12.utilities.PluginUtilities;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -29,7 +29,7 @@ public class CommandSendListener implements Listener {
 
         if (!isBannedCommand(message[0])) return;
 
-        Utilities.sendConfigMessage("Messages.NonAllowed", plugin, player, null);
+        PluginUtilities.sendConfigMessage("Messages.NonAllowed", plugin, player, null);
 
         event.setCancelled(true);
     }

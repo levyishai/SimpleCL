@@ -1,5 +1,7 @@
 package me.thesnipe12;
 
+import me.thesnipe12.utilities.CustomConfig;
+import me.thesnipe12.utilities.PluginUtilities;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -7,7 +9,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
 
-import static me.thesnipe12.Utilities.getCustomConfig;
+import static me.thesnipe12.utilities.PluginUtilities.getCustomConfig;
 
 public class Timer extends BukkitRunnable {
     private final Plugin plugin;
@@ -23,7 +25,7 @@ public class Timer extends BukkitRunnable {
         for (Player player : combatTimer.keySet()) {
             if (combatTimer.get(player) <= 0 || player == null) continue;
 
-            Utilities.sendActionbar(player, plugin.getConfig().getString("Timer.ActionBarMessage")
+            PluginUtilities.sendActionbar(player, plugin.getConfig().getString("Timer.ActionBarMessage")
                     + plugin.getConfig().getString("Timer.NumberColor") + combatTimer.get(player));
 
             combatTimer.put(player, combatTimer.get(player) - 1);
@@ -36,7 +38,7 @@ public class Timer extends BukkitRunnable {
     private void lowerNewbieTimerIfNeededForOnlinePlayers() {
         if (!plugin.getConfig().getBoolean("newbieProtection.use")) return;
 
-        CustomConfig newbieConfig = getCustomConfig(Utilities.ConfigType.NEWBIE_CONFIG);
+        CustomConfig newbieConfig = getCustomConfig(PluginUtilities.ConfigType.NEWBIE_CONFIG);
 
         for (Player p : Bukkit.getServer().getOnlinePlayers()) {
             if (!newbieConfig.getConfig().isSet("players." + p.getUniqueId())) {
@@ -59,7 +61,7 @@ public class Timer extends BukkitRunnable {
             Bukkit.getScheduler().runTaskLater(plugin, () -> {
                 if (combatTimer.get(player) > 0) return;
 
-                Utilities.sendActionbar(player, plugin.getConfig().getString("Timer.ActionBarMessage")
+                PluginUtilities.sendActionbar(player, plugin.getConfig().getString("Timer.ActionBarMessage")
                         + plugin.getConfig().getString("Timer.NumberColor") + combatTimer.get(player));
             }, 40L);
         }

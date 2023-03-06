@@ -1,9 +1,9 @@
 package me.thesnipe12.listeners;
 
-import me.thesnipe12.CustomConfig;
+import me.thesnipe12.utilities.CustomConfig;
 import me.thesnipe12.PluginConstants;
-import me.thesnipe12.UpdateChecker;
-import me.thesnipe12.Utilities;
+import me.thesnipe12.utilities.UpdateChecker;
+import me.thesnipe12.utilities.PluginUtilities;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -22,8 +22,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static me.thesnipe12.Utilities.broadcastConfigMessage;
-import static me.thesnipe12.Utilities.getCustomConfig;
+import static me.thesnipe12.utilities.PluginUtilities.broadcastConfigMessage;
+import static me.thesnipe12.utilities.PluginUtilities.getCustomConfig;
 
 public class LoggingListener implements Listener {
     private final Plugin plugin;
@@ -67,7 +67,7 @@ public class LoggingListener implements Listener {
     public void on(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         combatTimer.putIfAbsent(player, 0);
-        CustomConfig newbieConfig = getCustomConfig(Utilities.ConfigType.NEWBIE_CONFIG);
+        CustomConfig newbieConfig = getCustomConfig(PluginUtilities.ConfigType.NEWBIE_CONFIG);
 
         if (!newbieConfig.getConfig().isSet("players." + player.getUniqueId()) && plugin.getConfig().getBoolean("newbieProtection.use")) {
             newbieConfig.getConfig().set("players." + player.getUniqueId(), 0);

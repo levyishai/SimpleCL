@@ -8,7 +8,7 @@ import org.bukkit.plugin.Plugin;
 
 import java.util.HashMap;
 
-import static me.thesnipe12.Utilities.sendConfigMessage;
+import static me.thesnipe12.utilities.PluginUtilities.sendConfigMessage;
 
 public class WorldGuardListener implements Listener {
     private final Plugin plugin;

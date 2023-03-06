@@ -1,4 +1,4 @@
-package me.thesnipe12;
+package me.thesnipe12.utilities;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;

@@ -1,4 +1,4 @@
-package me.thesnipe12;
+package me.thesnipe12.utilities;
 
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class Utilities {
+public class PluginUtilities {
     /**
      * Gets a message from the main config, translates color codes, checks for null, then sends it to the player.
      *

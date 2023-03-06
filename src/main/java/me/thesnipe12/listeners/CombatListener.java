@@ -1,6 +1,6 @@
 package me.thesnipe12.listeners;
 
-import me.thesnipe12.Utilities;
+import me.thesnipe12.utilities.PluginUtilities;
 import org.bukkit.entity.EnderCrystal;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -15,8 +15,8 @@ import org.bukkit.projectiles.ProjectileSource;
 
 import java.util.HashMap;
 
-import static me.thesnipe12.Utilities.getCustomConfig;
-import static me.thesnipe12.Utilities.sendConfigMessage;
+import static me.thesnipe12.utilities.PluginUtilities.getCustomConfig;
+import static me.thesnipe12.utilities.PluginUtilities.sendConfigMessage;
 
 public class CombatListener implements Listener {
     private final Plugin plugin;
@@ -95,9 +95,9 @@ public class CombatListener implements Listener {
 
     private Entity getNewbie(Entity damager, Entity damaged) {
         int maxSeconds = plugin.getConfig().getInt("newbieProtection.seconds");
-        int damagedSeconds = getCustomConfig(Utilities.ConfigType.NEWBIE_CONFIG).getConfig()
+        int damagedSeconds = getCustomConfig(PluginUtilities.ConfigType.NEWBIE_CONFIG).getConfig()
                 .getInt("players." + damaged.getUniqueId());
-        int damagerSeconds = getCustomConfig(Utilities.ConfigType.NEWBIE_CONFIG).getConfig()
+        int damagerSeconds = getCustomConfig(PluginUtilities.ConfigType.NEWBIE_CONFIG).getConfig()
                 .getInt("players." + damager.getUniqueId());
 
         if (damagerSeconds < maxSeconds) return damaged;

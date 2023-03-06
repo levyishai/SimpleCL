@@ -7,7 +7,9 @@ import java.util.List;
 import java.util.Objects;
 
 public class PluginConstants {
-    public static final int RESOURCE_ID = 101603;
+    public static final int
+            METRICS_ID = 17864,
+            RESOURCE_ID = 101603;
     public static final List<PluginCommand> COMMANDS = List.of(
             Objects.requireNonNull(Bukkit.getPluginCommand("sclnewbie")),
             Objects.requireNonNull(Bukkit.getPluginCommand("sclreload")));

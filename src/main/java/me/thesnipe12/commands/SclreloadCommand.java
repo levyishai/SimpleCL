@@ -1,8 +1,8 @@
 package me.thesnipe12.commands;
 
-import me.thesnipe12.CustomConfig;
+import me.thesnipe12.utilities.CustomConfig;
 import me.thesnipe12.PluginConstants;
-import me.thesnipe12.Utilities;
+import me.thesnipe12.utilities.PluginUtilities;
 import me.thesnipe12.listeners.WorldGuardListener;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -57,7 +57,7 @@ public class SclreloadCommand implements TabExecutor {
         }
 
         sender.sendMessage(PluginConstants.BORDER_DISABLE_SUCCESS);
-        if (!Utilities.isListenerRegistered(plugin, WorldGuardListener.class)) {
+        if (!PluginUtilities.isListenerRegistered(plugin, WorldGuardListener.class)) {
             Bukkit.getPluginManager().registerEvents(new WorldGuardListener(plugin, combatTimer), plugin);
         }
     }
@@ -66,8 +66,8 @@ public class SclreloadCommand implements TabExecutor {
         plugin.reloadConfig();
         plugin.saveConfig();
 
-        for (Utilities.ConfigType configType : Utilities.ConfigType.values()) {
-            CustomConfig customConfig = Utilities.getCustomConfig(configType);
+        for (PluginUtilities.ConfigType configType : PluginUtilities.ConfigType.values()) {
+            CustomConfig customConfig = PluginUtilities.getCustomConfig(configType);
 
             customConfig.reloadConfig();
             customConfig.saveConfig();

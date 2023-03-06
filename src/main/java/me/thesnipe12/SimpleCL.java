@@ -6,6 +6,10 @@ import me.thesnipe12.listeners.CombatListener;
 import me.thesnipe12.listeners.CommandSendListener;
 import me.thesnipe12.listeners.LoggingListener;
 import me.thesnipe12.listeners.WorldGuardListener;
+import me.thesnipe12.utilities.CustomConfig;
+import me.thesnipe12.utilities.PluginUtilities;
+import me.thesnipe12.utilities.UpdateChecker;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
@@ -15,11 +19,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.HashMap;
 import java.util.List;
 
-import static me.thesnipe12.Utilities.getCustomConfig;
+import static me.thesnipe12.utilities.PluginUtilities.getCustomConfig;
 
 public final class SimpleCL extends JavaPlugin {
-    private static final HashMap<Player, Integer> combatTimer = new HashMap<>();
-    private static final HashMap<Player, Player> lastHitter = new HashMap<>();
+    private final HashMap<Player, Integer> combatTimer = new HashMap<>();
+    private final HashMap<Player, Player> lastHitter = new HashMap<>();
 
     @Override
     public void onEnable() {
@@ -28,10 +32,11 @@ public final class SimpleCL extends JavaPlugin {
         worldGuardSetup();
         commandsSetup();
         checkForUpdates();
+        new Metrics(this, PluginConstants.METRICS_ID);
     }
 
     private void configsSetup() {
-        for (Utilities.ConfigType configType : Utilities.ConfigType.values()) {
+        for (PluginUtilities.ConfigType configType : PluginUtilities.ConfigType.values()) {
             CustomConfig currentConfig = getCustomConfig(configType);
 
             currentConfig.setup();

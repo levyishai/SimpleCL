@@ -1,5 +1,5 @@
 name: SimpleCL
-version: 2.0.1
+version: 2.0.2
 main: me.thesnipe12.SimpleCL
 api-version: 1.18
 author: TheSnipe12
@@ -18,5 +18,5 @@ commands:
     description: Reloads the plugin.
     permission: simplecl.reload
   sclnewbie:
-    usage: /sclnewbie <get/remove/set/toggle> <player> {number}
+    usage: /sclnewbie <get/remove/set/toggle> {player} {number}
     description: A command to control newbie protection.
