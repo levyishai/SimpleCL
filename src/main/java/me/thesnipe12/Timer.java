@@ -6,10 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
-
 import java.util.HashMap;
-
-import static me.thesnipe12.utilities.PluginUtilities.getCustomConfig;
 
 public class Timer extends BukkitRunnable {
     private final Plugin plugin;
@@ -38,7 +35,7 @@ public class Timer extends BukkitRunnable {
     private void lowerNewbieTimerIfNeededForOnlinePlayers() {
         if (!plugin.getConfig().getBoolean("newbieProtection.use")) return;
 
-        CustomConfig newbieConfig = getCustomConfig(PluginUtilities.ConfigType.NEWBIE_CONFIG);
+        CustomConfig newbieConfig = PluginUtilities.getCustomConfig(PluginUtilities.ConfigType.NEWBIE_CONFIG);
 
         for (Player p : Bukkit.getServer().getOnlinePlayers()) {
             if (!newbieConfig.getConfig().isSet("players." + p.getUniqueId())) {

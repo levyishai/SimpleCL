@@ -15,9 +15,6 @@ import org.bukkit.projectiles.ProjectileSource;
 
 import java.util.HashMap;
 
-import static me.thesnipe12.utilities.PluginUtilities.getCustomConfig;
-import static me.thesnipe12.utilities.PluginUtilities.sendConfigMessage;
-
 public class CombatListener implements Listener {
     private final Plugin plugin;
     private final HashMap<Player, Integer> combatTimer;
@@ -47,9 +44,9 @@ public class CombatListener implements Listener {
         event.setCancelled(true);
 
         if (newbie == damager) {
-            sendConfigMessage("Messages.whileNewbie", plugin, (Player) damager, damaged.getName());
+            PluginUtilities.sendConfigMessage("Messages.whileNewbie", plugin, (Player) damager, damaged.getName());
         } else if (damager instanceof Player) {
-            sendConfigMessage("Messages.hasNewbie", plugin, (Player) damager, damaged.getName());
+            PluginUtilities.sendConfigMessage("Messages.hasNewbie", plugin, (Player) damager, damaged.getName());
         }
     }
 
@@ -70,14 +67,14 @@ public class CombatListener implements Listener {
             lastHitter.put(((Player) damager), (Player) damaged);
 
             if (combatTimer.get(damager) == 0) {
-                sendConfigMessage("Messages.TaggerMessage", plugin, (Player) damager, damaged.getName());
+                PluginUtilities.sendConfigMessage("Messages.TaggerMessage", plugin, (Player) damager, damaged.getName());
             }
 
             combatTimer.put((Player) damager, plugin.getConfig().getInt("Timer.CombatTime"));
         }
 
         if (combatTimer.get(damaged) == 0) {
-            sendConfigMessage("Messages.TaggedMessage", plugin, (Player) damaged, damager.getName());
+            PluginUtilities.sendConfigMessage("Messages.TaggedMessage", plugin, (Player) damaged, damager.getName());
         }
 
         combatTimer.put((Player) damaged, plugin.getConfig().getInt("Timer.CombatTime"));
@@ -95,9 +92,9 @@ public class CombatListener implements Listener {
 
     private Entity getNewbie(Entity damager, Entity damaged) {
         int maxSeconds = plugin.getConfig().getInt("newbieProtection.seconds");
-        int damagedSeconds = getCustomConfig(PluginUtilities.ConfigType.NEWBIE_CONFIG).getConfig()
+        int damagedSeconds = PluginUtilities.getCustomConfig(PluginUtilities.ConfigType.NEWBIE_CONFIG).getConfig()
                 .getInt("players." + damaged.getUniqueId());
-        int damagerSeconds = getCustomConfig(PluginUtilities.ConfigType.NEWBIE_CONFIG).getConfig()
+        int damagerSeconds = PluginUtilities.getCustomConfig(PluginUtilities.ConfigType.NEWBIE_CONFIG).getConfig()
                 .getInt("players." + damager.getUniqueId());
 
         if (damagerSeconds < maxSeconds) return damaged;

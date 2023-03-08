@@ -13,8 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import static me.thesnipe12.utilities.PluginUtilities.*;
-
 public class SclnewbieCommand implements TabExecutor {
     private final Plugin plugin;
 
@@ -50,7 +48,7 @@ public class SclnewbieCommand implements TabExecutor {
         final List<String> availableOptions = getAvailableOptions(sender, args);
         if (availableOptions.isEmpty()) return availableOptions;
 
-        return getCommandOptions(availableOptions, args);
+        return PluginUtilities.getCommandOptions(availableOptions, args);
     }
 
     private List<String> getAvailableOptions(CommandSender sender, String[] args) {
@@ -85,8 +83,8 @@ public class SclnewbieCommand implements TabExecutor {
         final UUID uuid;
         CustomConfig newbieConfig = PluginUtilities.getCustomConfig(PluginUtilities.ConfigType.NEWBIE_CONFIG);
 
-        if (args.length >= 2 && sender.hasPermission(CommandsConstants.NEWBIE_PERM) && getUUIDFromName(args[1]) != null) {
-            uuid = getUUIDFromName(args[1]);
+        if (args.length >= 2 && sender.hasPermission(CommandsConstants.NEWBIE_PERM) && PluginUtilities.getUUIDFromName(args[1]) != null) {
+            uuid = PluginUtilities.getUUIDFromName(args[1]);
         } else if (sender instanceof Player) {
             uuid = ((Player) sender).getUniqueId();
         } else {
@@ -116,8 +114,8 @@ public class SclnewbieCommand implements TabExecutor {
         final UUID uuid;
         CustomConfig newbieConfig = PluginUtilities.getCustomConfig(PluginUtilities.ConfigType.NEWBIE_CONFIG);
 
-        if (args.length >= 2 && sender.hasPermission(CommandsConstants.NEWBIE_PERM) && getUUIDFromName(args[1]) != null) {
-            uuid = getUUIDFromName(args[1]);
+        if (args.length >= 2 && sender.hasPermission(CommandsConstants.NEWBIE_PERM) && PluginUtilities.getUUIDFromName(args[1]) != null) {
+            uuid = PluginUtilities.getUUIDFromName(args[1]);
         } else if (sender instanceof Player) {
             uuid = ((Player) sender).getUniqueId();
         } else {
@@ -168,12 +166,12 @@ public class SclnewbieCommand implements TabExecutor {
             return;
         }
 
-        if (getUUIDFromName(args[1]) == null) {
+        if (PluginUtilities.getUUIDFromName(args[1]) == null) {
             sender.sendMessage(CommandsConstants.NOT_IN_CACHE);
             return;
         }
 
-        if (!isNumeric(args[2])) {
+        if (!PluginUtilities.isNumeric(args[2])) {
             sender.sendMessage(CommandsConstants.NEWBIE_WRONG_USAGE);
             return;
         }

@@ -22,9 +22,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static me.thesnipe12.utilities.PluginUtilities.broadcastConfigMessage;
-import static me.thesnipe12.utilities.PluginUtilities.getCustomConfig;
-
 public class LoggingListener implements Listener {
     private final Plugin plugin;
     private final List<Player> kicked = new ArrayList<>();
@@ -53,8 +50,7 @@ public class LoggingListener implements Listener {
         }
 
         Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "kill " + player.getName());
-
-        broadcastConfigMessage("Messages.CombatLoggedMessage", plugin, player.getName());
+        PluginUtilities.broadcastConfigMessage("Messages.CombatLoggedMessage", plugin, player.getName());
 
         combatTimer.put(player, 0);
         if (!lastHitter.containsKey(player)) return;
@@ -67,7 +63,7 @@ public class LoggingListener implements Listener {
     public void on(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         combatTimer.putIfAbsent(player, 0);
-        CustomConfig newbieConfig = getCustomConfig(PluginUtilities.ConfigType.NEWBIE_CONFIG);
+        CustomConfig newbieConfig = PluginUtilities.getCustomConfig(PluginUtilities.ConfigType.NEWBIE_CONFIG);
 
         if (!newbieConfig.getConfig().isSet("players." + player.getUniqueId()) && plugin.getConfig().getBoolean("newbieProtection.use")) {
             newbieConfig.getConfig().set("players." + player.getUniqueId(), 0);

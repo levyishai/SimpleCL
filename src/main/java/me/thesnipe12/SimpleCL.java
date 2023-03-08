@@ -19,8 +19,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.HashMap;
 import java.util.List;
 
-import static me.thesnipe12.utilities.PluginUtilities.getCustomConfig;
-
 public final class SimpleCL extends JavaPlugin {
     private final HashMap<Player, Integer> combatTimer = new HashMap<>();
     private final HashMap<Player, Player> lastHitter = new HashMap<>();
@@ -37,7 +35,7 @@ public final class SimpleCL extends JavaPlugin {
 
     private void configsSetup() {
         for (PluginUtilities.ConfigType configType : PluginUtilities.ConfigType.values()) {
-            CustomConfig currentConfig = getCustomConfig(configType);
+            CustomConfig currentConfig = PluginUtilities.getCustomConfig(configType);
 
             currentConfig.setup();
             currentConfig.getConfig().options().copyDefaults(true);

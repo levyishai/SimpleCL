@@ -1,5 +1,6 @@
 package me.thesnipe12.listeners;
 
+import me.thesnipe12.utilities.PluginUtilities;
 import net.raidstone.wgevents.events.RegionEnteredEvent;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -7,8 +8,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 
 import java.util.HashMap;
-
-import static me.thesnipe12.utilities.PluginUtilities.sendConfigMessage;
 
 public class WorldGuardListener implements Listener {
     private final Plugin plugin;
@@ -27,7 +26,7 @@ public class WorldGuardListener implements Listener {
         if (plugin.getConfig().getBoolean("allowBorderHopping") || combatTimer.get(player) == 0) return;
 
         event.setCancelled(true);
-        sendConfigMessage("Messages.borderHop", plugin, player, null);
+        PluginUtilities.sendConfigMessage("Messages.borderHop", plugin, player, null);
     }
 
 }
