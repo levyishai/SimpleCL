@@ -70,10 +70,10 @@ public class LoggingListener implements Listener {
             newbieConfig.saveConfig();
         }
 
-        sendNUPDMessageIfOperator(player);
+        sendNotUpToDateMessageIfOperator(player);
     }
 
-    private void sendNUPDMessageIfOperator(Player player) {
+    private void sendNotUpToDateMessageIfOperator(Player player) {
         if (!Bukkit.getServer().getOperators().contains(player)) return;
 
         new UpdateChecker(plugin, PluginConstants.RESOURCE_ID).getVersion(version -> {
@@ -82,8 +82,8 @@ public class LoggingListener implements Listener {
                 final TextComponent prefix = new TextComponent(ChatColor.translateAlternateColorCodes('&',
                         plugin.getConfig().getString("prefix") + ""));
 
-                player.spigot().sendMessage(prefix, ListenersConstants.NUPD_MESSAGE_PART1,
-                        ListenersConstants.NUPD_MESSAGE_PART2, ListenersConstants.NUPD_MESSAGE_PART3);
+                player.spigot().sendMessage(prefix, ListenersConstants.NOT_UP_TO_DATE_MESSAGE_PART1,
+                        ListenersConstants.NOT_UP_TO_DATE_MESSAGE_PART2, ListenersConstants.NOT_UP_TO_DATE_MESSAGE_PART3);
             }
 
         });
