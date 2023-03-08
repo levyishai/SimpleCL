@@ -7,9 +7,9 @@ import me.thesnipe12.listeners.CommandSendListener;
 import me.thesnipe12.listeners.LoggingListener;
 import me.thesnipe12.listeners.WorldGuardListener;
 import me.thesnipe12.utilities.CustomConfig;
+import me.thesnipe12.utilities.Metrics;
 import me.thesnipe12.utilities.PluginUtilities;
 import me.thesnipe12.utilities.UpdateChecker;
-import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
@@ -19,6 +19,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.HashMap;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public final class SimpleCL extends JavaPlugin {
     private final HashMap<Player, Integer> combatTimer = new HashMap<>();
     private final HashMap<Player, Player> lastHitter = new HashMap<>();
