@@ -17,5 +17,6 @@ public class PluginConstants {
             BORDER_DISABLE_FAIL = "Border Hopping is not allowed but WorldGuardEvents is not found!" +
             " got to https://www.spigotmc.org/resources/worldguard-events.65176/ to install it",
             BORDER_DISABLE_SUCCESS = "WorldGuardEvents found! Border Hopping not allowed!";
+    public static String PLUGIN_LINK = "https://www.spigotmc.org/resources/simplecl.101603/";
 
 }

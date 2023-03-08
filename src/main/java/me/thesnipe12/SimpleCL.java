@@ -80,8 +80,7 @@ public final class SimpleCL extends JavaPlugin {
     private void checkForUpdates() {
         new UpdateChecker(this, PluginConstants.RESOURCE_ID).getVersion(version -> {
             if (!version.equalsIgnoreCase(getDescription().getVersion())) {
-                getLogger().warning("There is a new version of the plugin available! Go to " +
-                        "\"https://www.spigotmc.org/resources/simplecl.101603/\" to download it.");
+                getLogger().warning("There is a new version of the plugin available! Go to \"" + PluginConstants.PLUGIN_LINK + "\" to download it.");
             } else {
                 getLogger().info("You are running the latest version of the plugin!");
             }
