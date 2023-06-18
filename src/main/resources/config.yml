@@ -84,9 +84,19 @@ LifeSteal:
   # Default: false
   GiveHeart: false
 
+  # What's the maximum amount of hearts a player could have.
+  # Put as a negative number for no maximum.
+  # Default: -1
+  maxHealth: -1
+
   # Should the player who died get a heart.
   # Default: false
   RemoveHeart: false
+
+  # What's the minimum amount of hearts a player could have.
+  # Put as a negative number for no minimum.
+  # Default: -1
+  minHealth: -1
 
 # Configuration for the newbie protection.
 newbieProtection:

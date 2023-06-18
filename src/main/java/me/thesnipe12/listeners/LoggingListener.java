@@ -91,16 +91,30 @@ public class LoggingListener implements Listener {
 
     private void removeHeartIfEnabled(Player player) {
         AttributeInstance playerAttribute = player.getAttribute(Attribute.GENERIC_MAX_HEALTH);
-        if (plugin.getConfig().getBoolean("LifeSteal.RemoveHeart") && playerAttribute != null) {
+        if (shouldRemoveHeart(player))
             playerAttribute.setBaseValue(playerAttribute.getValue() - 2);
-        }
+    }
+
+    private boolean shouldRemoveHeart(Player player) {
+        final AttributeInstance playerAttribute = player.getAttribute(Attribute.GENERIC_MAX_HEALTH);
+        final boolean removeHeart = plugin.getConfig().getBoolean("LifeSteal.RemoveHeart");
+        final int minHealth = plugin.getConfig().getInt("LifeSteal.minHealth");
+
+        return removeHeart && playerAttribute != null && (playerAttribute.getValue() > minHealth || minHealth == -1);
     }
 
     private void giveHeartIfEnabled(Player player) {
         AttributeInstance playerAttribute = player.getAttribute(Attribute.GENERIC_MAX_HEALTH);
-        if (plugin.getConfig().getBoolean("LifeSteal.GiveHeart") && playerAttribute != null) {
+        if (shouldGiveHeart(player))
             playerAttribute.setBaseValue(playerAttribute.getValue() + 2);
-        }
+    }
+
+    private boolean shouldGiveHeart(Player player) {
+        final AttributeInstance playerAttribute = player.getAttribute(Attribute.GENERIC_MAX_HEALTH);
+        final boolean giveHeart = plugin.getConfig().getBoolean("LifeSteal.GiveHeart");
+        final int maxHealth = plugin.getConfig().getInt("LifeSteal.maxHealth");
+
+        return giveHeart && playerAttribute != null && (playerAttribute.getValue() < maxHealth || maxHealth == -1);
     }
 
 }
